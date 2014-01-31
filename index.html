@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+
+<script type='text/javascript' src='./ripple-checkout.js'></script>
+<script type='text/javascript' id='ripple-checkout'>
+  var checkout = RippleCheckout({
+    dst_address: 'r4nkJpL9se94ASQut4eXRRtnBPtDpY2PZ6',
+    server: {
+      host: 's_west.ripple.com',
+      port: '443',
+      secure: true
+    }
+  });
+
+  checkout.addButton({
+    dst_amount: {
+      value: '1',
+      currency: 'XRP',
+      issuer: ''
+    },
+    dst_tag: 123,
+    callback: function(err, confirmed) {
+      var scriptElem = document.getElementById('ripple-checkout');
+      var message = document.createElement('div');
+      message.innerHTML = err || 'Confirmed!';
+      scriptElem.parentNode.insertBefore(message, scriptElem.nextSibling);
+    }
+  });
+</script>
+
+</body>
+
+</html>
